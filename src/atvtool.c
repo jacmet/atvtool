@@ -224,6 +224,8 @@ static void set_led(int mode)
 		set_report(buf, sizeof(buf));
 		buf[1] = 3;
 		set_report(buf, 3);
+		buf[1] = 4;
+		set_report(buf, 3);
 		break;
 
 	case LEDMODE_AMBER:
