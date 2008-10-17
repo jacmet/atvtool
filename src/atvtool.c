@@ -170,7 +170,10 @@ static usb_dev_handle *get_ir(void)
 
 		/* interface is normally handled by hiddev */
 		usb_detach_kernel_driver_np(ir, 0);
-		usb_claim_interface(ir, 0);
+		if (usb_claim_interface(ir, 0)) {
+			fprintf(stderr, "error claiming interface, are you root?\n");
+			exit(2);
+		}
 		usb_set_configuration(ir, 1);
 	}
 
